@@ -9,7 +9,7 @@ Ejemplos ejecución:
 
 * Modo player: 
 ```bash 
-main.py --agent player --input input.txt
+python -m main --agent player --input input.txt
 ```
 
 * BFS con gui:

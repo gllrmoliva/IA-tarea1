@@ -40,8 +40,10 @@ class MazeGame:
         if position == None:
             position = self.current_position
 
+        step = self.map[position[0]][position[1]]
 
-        step =  self.map[position[0]][position[1]]
+        if step == 0:
+            return []
 
         if 0 <= position[0] - step:
             possible_actions.append((position[0] - step,

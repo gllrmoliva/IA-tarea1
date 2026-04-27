@@ -54,3 +54,8 @@ Para ingresar nuevos laberintos al sistema este debe seguir el siguiente formato
 4 1 4 3 2
 ```
 > Se considera que los inputs se entregan con el formato correcto.
+
+## Controles en modo GUI
+- SPACE: avanza en las acciones de los agentes que se mueven de forma automática (random, dfs, bfs)
+- UP, DOWN, RIGTH, LEFT: Movimiento para agente player.
+- ESC, QUIT: Si existen mapas faltantes, se pasa al siguiente. En caso contrario, se termina la ejecución

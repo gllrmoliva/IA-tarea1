@@ -6,11 +6,20 @@ from pprint import pprint
 
 
 class Node:
+    """
+    Estructura auxiliar de nodo utilizado para BFS.
+    """
+
     def __init__(self, position, parent=None, ):
         self.position = position
         self.parent = parent
 
+
 class Player:
+    """
+    Clase utilizada para interectividad con vista.
+    """
+
     def __init__(self, game: MazeGame):
         self.game = game
 
@@ -60,6 +69,10 @@ class Player:
 
 
 class Agent:
+    """
+    Clase base de Agentes.
+    """
+
     def __init__(self, game: MazeGame):
         self.game = game
         self.number_moves = 0
@@ -72,6 +85,10 @@ class Agent:
 
 
 class RandomAgent(Agent):
+    """
+    Agente random, toma acciones válidas aleatorias.
+    """
+
     def __init__(self, game: MazeGame):
         super().__init__(game)
 
@@ -82,6 +99,11 @@ class RandomAgent(Agent):
 
 
 class BFSAgent(Agent):
+    """
+    Agente BFS, utiliza BFS para calcular sus acciones, luego de esto elige
+    sus acciones basado en la lista generada.
+    """
+
     def __init__(self, game):
         super().__init__(game)
         # precompute the path
@@ -100,7 +122,7 @@ class BFSAgent(Agent):
         traversal_order = []
 
         # surfing BFS until reach goal
-        current_node = Node(position = self.game.get_start())
+        current_node = Node(position=self.game.get_start())
         queue.append(current_node)
         visited.add(current_node.position)
 
@@ -111,9 +133,9 @@ class BFSAgent(Agent):
             current_node = queue.popleft()
             traversal_order.append(current_node)
 
-            for neighbor_position in self.game.get_possible_actions(position = current_node.position):
+            for neighbor_position in self.game.get_possible_actions(position=current_node.position):
                 if neighbor_position not in visited:
-                    queue.append(Node(position = neighbor_position, parent = current_node))
+                    queue.append(Node(position=neighbor_position, parent=current_node))
                     visited.add(neighbor_position)
         # Go bottom up on tree
         path = []
@@ -141,10 +163,10 @@ class IterativeDFSAgent(Agent):
         start = self.game.get_start()
         
         while True:
-            result, was_cutoff = self._dls(start, depth, [start])
+            result, was_cutoff = self._dfs(start, depth, [start])
             
             if result:
-                result.pop(0) # eliminar raíz
+                result.pop(0)   # eliminar raíz
                 return result
             
             # no resultado y no recortes de profundidad, no solución
@@ -153,9 +175,9 @@ class IterativeDFSAgent(Agent):
             
             depth += 1
 
-    def _dls(self, node, depth, path):
+    def _dfs(self, node, depth, path):
         if self.game.is_goal(node):
-            return path, False # encontrado, no importa el cutoff
+            return path, False  # encontrado, no importa el cutoff
         
         if depth == 0:
             # límite no sabemos si hay una solución más abajo.
@@ -165,7 +187,7 @@ class IterativeDFSAgent(Agent):
         
         for neighbor_position in self.game.get_possible_actions(position=node):
             if neighbor_position not in path:
-                result, cutoff_occurred = self._dls(neighbor_position, depth - 1, path + [neighbor_position])
+                result, cutoff_occurred = self._dfs(neighbor_position, depth - 1, path + [neighbor_position])
                 
                 if result:
                     return result, False
@@ -178,6 +200,7 @@ class IterativeDFSAgent(Agent):
 
 
 if __name__ == "__main__":
+    # ESTO ES SOLO PARA TESTING
     raw_input = """
     5 5
     0 0

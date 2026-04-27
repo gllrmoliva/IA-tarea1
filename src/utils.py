@@ -3,6 +3,8 @@ import argparse
 
 
 def split_multiple_maps(large_data_string):
+    """Divide un string largo con multiples mapas en varios cortos con información
+    sobre un solo mapa."""
     tokens = deque(large_data_string.split())
     all_maps = []
 
@@ -34,6 +36,8 @@ def split_multiple_maps(large_data_string):
 
 
 def parse_map(data_string):
+    """Parsea un string con información sobre un solo mapa"""
+
     tokens = data_string.split()
     if len(tokens) < 6:
         raise ValueError("ERROR: string is incomplete")
@@ -67,6 +71,9 @@ def parse_map(data_string):
 
 
 def parse_args():
+    """
+    Parseo de argumentos para main
+    """
 
     parser = argparse.ArgumentParser()
 

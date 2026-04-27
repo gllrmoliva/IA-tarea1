@@ -2,9 +2,11 @@ import random
 
 
 class MazeGame:
+    """
+    Modelo del juego, los estados son las coordenadas.
+    """
 
     def __init__(self, map, height, width, start: tuple, goal: tuple):
-        """"""
         self.map = map
         self.height = height
         self.width = width
@@ -86,6 +88,7 @@ class MazeGame:
 
 
 if __name__ == "__main__":
+    # SOLO CODIGO DE TESTEO
     height = 5
     width = 5
     test_start = (0, 0)

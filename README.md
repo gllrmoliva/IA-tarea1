@@ -1,5 +1,5 @@
 ## Como ejecutar
-Para ejecutar el programa ejecutar:
+Para ejecutar el programa utilizar:
 ```bash 
 python -m main [Args]
 ```
